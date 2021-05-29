@@ -1,11 +1,14 @@
 import React from "react";
 
 const Issue = (props) => {
-    const {id, title} = props.issue 
+    const {issue, active, onHighlight} = props 
     return (
-        <ul>
-            <li>Issue ID: {id}</li>
-            <li>Title: {title}</li>
+        <ul 
+            className={active? "highlight": ""} 
+            onClick={onHighlight}
+        >
+            <li>Issue ID: {issue.id}</li>
+            <li>Title: {issue.title}</li>
         </ul>
     )
 }

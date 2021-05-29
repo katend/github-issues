@@ -15,3 +15,7 @@ code {
 .nextButton {
   margin-left: 2rem;
 }
+
+.highlight {
+  background-color: lightgray;
+}

@@ -9,6 +9,7 @@ import Pagination from './components/Pagination';
 function App() {
   const [issues, setIssues] = useState([]);
   const [pagination, setPagination] = useState(1);
+  const [chosenIssue, setChosenIssue] = useState();
 
   useEffect(() => {
     fetch(`https://api.github.com/repos/rails/rails/issues?page=${pagination}&per_page=5`)
@@ -23,7 +24,12 @@ function App() {
   return (
     <div>
         {issues.map(issue => (
-          <Issue key={issue.id} issue={issue} />
+          <Issue 
+            key={issue.id} 
+            issue={issue}
+            active={issue === chosenIssue}
+            onHighlight={() => setChosenIssue(issue)}
+          />
         ))}
         <Pagination pagination={pagination} onPageChange={handlePageChange} />
     </div>
