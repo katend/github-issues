@@ -12,20 +12,28 @@ function App() {
   const [chosenIssue, setChosenIssue] = useState();
 
   useEffect(() => {
-    fetch(`https://api.github.com/repos/rails/rails/issues?page=${pagination}&per_page=5`)
-    .then(response => response.json())
-    .then(data => setIssues([...issues, ...data]));
-  }, [pagination]);
+    fetchIssues(pagination)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  const fetchIssues = (page) => {
+    fetch(`https://api.github.com/repos/rails/rails/issues?page=${page}&per_page=5`)
+      .then(response => response.json())
+      .then(data => setIssues([...issues, ...data]));
+  }
+  
   const handlePageChange = () => {
-    setPagination(pagination + 1)
+    let newPage = pagination;
+    newPage++;
+    setPagination(newPage);
+    fetchIssues(newPage);
   };
 
   return (
     <div>
-        {issues.map(issue => (
+        {issues.map((issue, index) => (
           <Issue 
-            key={issue.id} 
+            key={index}
             issue={issue}
             active={issue === chosenIssue}
             onHighlight={() => setChosenIssue(issue)}
