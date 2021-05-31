@@ -19,3 +19,19 @@ code {
 .highlight {
   background-color: lightgray;
 }
+
+.circle {
+  width: 36;
+  height: 36;
+  border-radius: 18;
+  background-color: 'red';
+ }
+
+ .count {
+   color:'#FFF'
+  }
+
+  .inline {
+    display: flex;
+    flex-direction: row;
+  }

@@ -5,7 +5,7 @@ const Issue = (props) => {
     return (
         <ul 
             className={active? "highlight": ""} 
-            onClick={onHighlight}
+            onClick={() => onHighlight(issue)}
         >
             <li>Issue ID: {issue.id}</li>
             <li>Title: {issue.title}</li>
