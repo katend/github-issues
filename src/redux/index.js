@@ -1,0 +1,1 @@
+export {addHighlightedIssues} from './issue/issueActions';

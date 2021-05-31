@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Badge from 'react-bootstrap/Badge'
 
+import { addHighlightedIssues } from './redux';
+
 import Issue from './components/Issue';
 import Pagination from './components/Pagination';
 import Notification from './components/Notification';
 
-function App() {
+function App(props) {
   const [issues, setIssues] = useState([]);
   const [pagination, setPagination] = useState(1);
   const [chosenIssue, setChosenIssue] = useState();
-  const [recentHighlights, setRecentHighlights] = useState([]);
-  const uniqueRecentIssues = Array.from(new Set(recentHighlights));
-  const notificationCounter = uniqueRecentIssues.length;
+
+  const notificationCounter = props.highlightedIssues.length;
 
   useEffect(() => {
     fetchIssues(pagination)
@@ -36,7 +38,7 @@ function App() {
 
   const onHighlight = (issue) => {
     setChosenIssue(issue)
-    setRecentHighlights([...recentHighlights, issue])
+    props.addHighlightedIssue(issue)
   }
 
   return (
@@ -44,8 +46,9 @@ function App() {
       <h2>
         Recent highlighted issues <Badge variant="danger">{notificationCounter}</Badge>
       </h2>
-      {uniqueRecentIssues.length > 0 ?
-        <Notification uniqueRecentIssues={uniqueRecentIssues} />
+   
+      {props.highlightedIssues.length > 0 ?
+        <Notification uniqueRecentIssues={props.highlightedIssues} />
          : null 
       }
       
@@ -63,4 +66,16 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    highlightedIssues: state.highlightedIssues
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addHighlightedIssue: (issue) => dispatch(addHighlightedIssues(issue))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
