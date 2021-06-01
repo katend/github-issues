@@ -48,7 +48,7 @@ function App(props) {
       </h2>
    
       {props.highlightedIssues.length > 0 ?
-        <Notification uniqueRecentIssues={props.highlightedIssues} />
+        <Notification highlighedIssues={props.highlightedIssues} />
          : null 
       }
       

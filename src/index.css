@@ -16,6 +16,10 @@ code {
   margin-left: 2rem;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .highlight {
   background-color: lightgray;
 }

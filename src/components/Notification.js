@@ -5,7 +5,7 @@ import HighlightedIssue from "./HighlightedIssue";
 const Notification = (props) => {
     return (
         <div>
-            {[...props.uniqueRecentIssues].reverse().map((issue, index) => (
+            {[...props.highlighedIssues].reverse().slice(0, 5).map((issue, index) => (
             <HighlightedIssue
             key={index}
             issue={issue}

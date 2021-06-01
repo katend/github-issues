@@ -4,7 +4,7 @@ const Issue = (props) => {
     const {issue, active, onHighlight} = props 
     return (
         <ul 
-            className={active? "highlight": ""} 
+            className={active ? "highlight" : "pointer"} 
             onClick={() => onHighlight(issue)}
         >
             <li>Issue ID: {issue.id}</li>
