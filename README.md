@@ -1,72 +1,38 @@
-# Getting Started with Create React App
+### Setup
+- Clone the app
+- cd github-issues/
+- run "npm install" (to install node_modules)
+- run "npm start" to start the project
+- Open [http://localhost:3000] to view the app in the browser.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Technical decision
+## Styling: 
+- Putting CSS styles in index.css file and using 'className' property to implement the styles. It is easier to customize the styling acording to projects' needs.
+- Use react-bootstrap because of the ease of use. Additionally, it has been evolving and growing along with React making it a suitable tool for React in terms of designing user interface. In addition, it removes the redundancies of ordering HTML elements and instead uses pure JavaScript to have React take over page-rendering entirely.
+- However, the disadvatage of react-bootstrap is it may be unable to provide customized designs that meet project's specific needs
 
-## Available Scripts
 
-In the project directory, you can run:
+## Sharing state between components:
+- Passing state as props from parent to child components
+    Pros: keeping state in a few components and passing it to as many child components as needed which helps writing code that is easier to maintain
+- using Redux for managing application state
+    - Pros: creating a single store that can manage state and all communication, such as reading, updating or creating data can happen through the store. This helps prevent data inconsistency bugs from happening. 
+    - Cons: for small applications with not much state, using Redux would unnecessarily over-complicate the app.
 
-### `npm start`
+##  React hooks 
+ - React hooks like useState and useEffect is used. 
+    - Pros: They allow always using functions instead of having to switch between functions, classes, higher-order components, and render props. Therefore, it is easier to test and maintain. 
+    - Cons: need to follow their rules and may be difficult to know which rules have been broken. Need time to practice using them and sometimes may lead to wrong use (eg. useCallback, useMemo).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ ## Need improvement
+ - User interface of the app
+ - Add routing
+ - Move all state and data fetching to redux
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Prevent wasted renders
+ - Use React hooks (e.g set dependecies value in the useEffect hook) and React.memo to prevent wasted renders
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-react-bootstrap
+ ## Handle side-effects (e.g. data fetching)
+ - Use the useEffect(callback, dependencies) hook to handle side-effects
+ - Pros: the dependencies argument of useEffect helps control when the side-effects run. The side-effect runs only when the dependency value changes.
+ - Cons: As the hook relies heavily on closures, may encounter stale closures issue. In addition, if not careful with what the side-effect does, the hook may trigger infinite loop of component renderings
