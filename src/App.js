@@ -42,17 +42,17 @@ function App(props) {
   }
 
   return (
-    <div>
+    <div className="app">
       <h2>
         Recent highlighted issues <Badge variant="danger">{notificationCounter}</Badge>
       </h2>
    
       {props.highlightedIssues.length > 0 ?
         <Notification highlighedIssues={props.highlightedIssues} />
-         : null 
+         : "No recent highlighted issues." 
       }
       
-      <h2>Github issues</h2>
+      <h2 style={{ marginTop: '2rem' }}>Github issues</h2>
         {issues.map((issue, index) => (
           <Issue 
             key={index}
